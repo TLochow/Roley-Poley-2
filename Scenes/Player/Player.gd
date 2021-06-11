@@ -7,7 +7,7 @@ onready var ScreenSize = get_viewport_rect().size
 
 export var ZoomSpeed = 0.25
 var MinZoom = 0.5
-var MaxZoom = 5
+var MaxZoom = 3.0
 var ZoomMargin = Vector2(400, 200)
 
 var Connected = true

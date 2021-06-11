@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Pole.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Player/Wheel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Parallax/bg_mountains_near.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Parallax/bg_grass_near.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Parallax/bg_clouds_near.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Parallax/bg_mountains_far.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Parallax/bg_clouds_far.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Parallax/bg_grass_far.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 49.8594, 4.90321 )
@@ -44,4 +50,69 @@ node_b = NodePath("../Wheel")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_bottom = 100
 smoothing_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_base_offset = Vector2( 0, -136 )
+scroll_ignore_camera_zoom = true
+
+[node name="CloudsFar" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/CloudsFar"]
+texture = ExtResource( 9 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
+
+[node name="CloudsNear" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/CloudsNear"]
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
+
+[node name="MountainsFar" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/MountainsFar"]
+texture = ExtResource( 8 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
+
+[node name="MountainsNear" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/MountainsNear"]
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
+
+[node name="GrassFar" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/GrassFar"]
+texture = ExtResource( 10 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
+
+[node name="GrassNear" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/GrassNear"]
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 272 )
