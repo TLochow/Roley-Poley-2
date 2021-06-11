@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Pole.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Player/Wheel.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 49.8594, 4.90321 )
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Bar" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Bar"]
+texture = ExtResource( 2 )
+
+[node name="BlackWheel" type="Node2D" parent="."]
+show_behind_parent = true
+position = Vector2( -44, 0 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BlackWheel"]
+node_a = NodePath("../../Bar")
+node_b = NodePath("../Wheel")
+
+[node name="Wheel" parent="BlackWheel" instance=ExtResource( 4 )]
+WhiteWheel = false
+
+[node name="WhiteWheel" type="Node2D" parent="."]
+show_behind_parent = true
+position = Vector2( 44, 0 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="WhiteWheel"]
+node_a = NodePath("../../Bar")
+node_b = NodePath("../Wheel")
+
+[node name="Wheel" parent="WhiteWheel" instance=ExtResource( 4 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
