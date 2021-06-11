@@ -20,7 +20,7 @@ func _ready():
 		set_collision_layer_bit(0, true)
 		set_collision_mask_bit(0, true)
 		JumpCast.set_collision_mask_bit(0, true)
-		$Sprite.modulate = Color(0.0, 0.0, 0.0, 1.0)
+		$Sprite.frame = 1
 
 func _physics_process(delta):
 	GetInputs()
